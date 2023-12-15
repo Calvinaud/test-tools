@@ -239,3 +239,23 @@ func Login(LITMUS_FRONTEND_URL string, LITMUS_USERNAME string, LITMUS_PASSWORD s
 
 	return credentials
 }
+
+func DeleteAgent(credentials types.Credentials) {
+
+	var projectId string = os.Getenv("LITMUS_PROJECT_ID")
+	var agentID string = os.Getenv("CLUSTER_ID")
+	var agentIDs []*string
+	agentIDs = append(agentIDs, &agentID)
+	//var agentName = os.Ge	tenv("AGENT_NAME")
+
+	if newAgent.ProjectId == "" {
+		newAgent.ProjectId = GetProjectID(credentials)
+	}
+
+	connectionData, err := apis.DisconnectAgent(projectId, agentIDs, credentials)
+	if err != nil {
+		utils.Red.Println("\n❌ It failed a lot: " + err.Error() + "\n")
+		os.Exit(1)
+	}
+	utils.Red.Println("\n❌ It failed a lot: " + connectionData.Data.Message + "\n")
+}

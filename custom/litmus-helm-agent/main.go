@@ -37,6 +37,9 @@ func main() {
 	if ACTION == "create" {
 		fmt.Println("\n🚀 Start Pre install hook ... 🎉")
 		litmus.CreateAgent(credentials)
+	} else if ACTION == "delete" {
+		fmt.Println("\n🚀 Start Pre delete hook ... 🎉")
+		litmus.DeleteAgent(credentials)
 	} else {
 		fmt.Println("\n❌ Please provide a valid action")
 	}
